@@ -124,7 +124,7 @@ export function Cart({ className }: CartProps) {
         <Cart34 /> {itemCount}
       </button>
 
-      {isOpen && (
+      {/* {isOpen && (
         <div>
           <div className="text-[22px] text-black text-sans">My cart</div>
           <div className="border-t-[1px]" />
@@ -167,9 +167,9 @@ export function Cart({ className }: CartProps) {
                 </div>
               </button>
             </>
-          )}
+          )} 
         </div>
-      )}
+      )}*/}
     </>
   );
 }
