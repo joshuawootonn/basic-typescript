@@ -5,6 +5,7 @@ import {
   Shape,
   Style,
   TextInput,
+  Number,
 } from "@makeswift/runtime/controls";
 import { ReactRuntime } from "@makeswift/runtime/react";
 
@@ -15,7 +16,38 @@ import {
   ProductName,
   ProductPrice,
 } from "components";
+import { ProductList } from "components/product-list";
 import { Collection } from "lib/shopify";
+
+ReactRuntime.registerComponent(ProductList, {
+  type: "product-list",
+  label: "Product list",
+  props: {
+    className: Style({ properties: Style.All }),
+    collectionId: Combobox({
+      async getOptions() {
+        return fetch(`/api/collections`)
+          .then((r) => r.json())
+          .then((collections: Collection[]) =>
+            collections.map((collection) => ({
+              id: collection.id.toString(),
+              label: collection.title,
+              value: collection.id.toString(),
+            }))
+          );
+      },
+      label: "Collection",
+    }),
+    count: Number({
+      label: "Count",
+      defaultValue: 4,
+      max: 8,
+      min: 1,
+      labelOrientation: "horizontal",
+      step: 1,
+    }),
+  },
+});
 
 ReactRuntime.registerComponent(ProductImages, {
   type: "product-images",

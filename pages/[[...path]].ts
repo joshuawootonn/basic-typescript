@@ -6,7 +6,7 @@ import {
 } from "@makeswift/runtime/next";
 import { GetStaticPropsContext, GetStaticPropsResult } from "next";
 
-import { getProduct } from "lib/shopify";
+import { getProduct, getProducts } from "lib/shopify";
 import { PageProps } from "lib/types";
 
 type Props = MakeswiftPageProps & PageProps;
@@ -18,11 +18,12 @@ export async function getStaticProps(
 
   if (!("props" in makeswiftResult)) return makeswiftResult;
 
+  const products = await getProducts();
   const product = await getProduct();
 
   return {
     ...makeswiftResult,
-    props: { ...makeswiftResult.props, product },
+    props: { ...makeswiftResult.props, products, product },
   };
 }
 
