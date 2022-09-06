@@ -24,6 +24,7 @@ export async function getStaticProps(
   return {
     ...makeswiftResult,
     props: { ...makeswiftResult.props, products, product },
+    revalidate: 5,
   };
 }
 
