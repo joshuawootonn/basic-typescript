@@ -36,7 +36,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
   const [cart, setCart] = useState<CartFragment | null>(null);
 
   useEffect(() => {
-    const savedCart = localStorage.getItem(LOCAL_STORAGE_CART_ID);
+    const savedCart = null; // localStorage.getItem(LOCAL_STORAGE_CART_ID);
     if (savedCart != null) initializeCart(savedCart);
 
     async function initializeCart(id?: string) {
@@ -59,11 +59,11 @@ export function CartProvider({ children }: { children: ReactNode }) {
           if (cart) {
             const result = await addLines(cart.id, lines);
             setCart(result);
-            localStorage.setItem(LOCAL_STORAGE_CART_ID, result.id);
+            // localStorage.setItem(LOCAL_STORAGE_CART_ID, result.id);
           } else {
             const result = await createCart(lines);
             setCart(result);
-            localStorage.setItem(LOCAL_STORAGE_CART_ID, result.id);
+            // localStorage.setItem(LOCAL_STORAGE_CART_ID, result.id);
           }
         } catch (e) {
           setCart(null);
@@ -75,7 +75,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
         try {
           const result = await updateLines(cart.id, lines);
           setCart(result);
-          localStorage.setItem(LOCAL_STORAGE_CART_ID, result.id);
+          // localStorage.setItem(LOCAL_STORAGE_CART_ID, result.id);
         } catch (e) {
           setCart(null);
           console.error(`"updateItem" failed with: `, e);
@@ -86,7 +86,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
         try {
           const result = await removeLines(cart.id, lineIds);
           setCart(result);
-          localStorage.setItem(LOCAL_STORAGE_CART_ID, result.id);
+          // localStorage.setItem(LOCAL_STORAGE_CART_ID, result.id);
         } catch (e) {
           setCart(null);
           console.error(`"deleteItem" failed with: `, e);
