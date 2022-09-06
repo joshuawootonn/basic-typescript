@@ -16,8 +16,6 @@ import {
   ProductName,
   ProductPrice,
 } from "components";
-import { AddToCartButton } from "components/cart";
-import { Header } from "components/header";
 import { ProductList } from "components/product-list";
 import { Collection } from "lib/shopify";
 
@@ -88,31 +86,5 @@ ReactRuntime.registerComponent(ProductDescription, {
   label: "Product description",
   props: {
     className: Style({ properties: Style.All }),
-  },
-});
-
-ReactRuntime.registerComponent(Header, {
-  type: "header",
-  label: "Header",
-  props: {
-    className: Style({ properties: Style.All }),
-    links: List({
-      type: Shape({
-        type: {
-          link: Link(),
-          text: TextInput({ label: "Text" }),
-        },
-      }),
-      label: "Links",
-      getItemLabel: (item) => item?.text ?? "",
-    }),
-  },
-});
-
-ReactRuntime.registerComponent(AddToCartButton, {
-  type: "add-to-cart-button",
-  label: "Add to cart button",
-  props: {
-    className: Style({ properties: [Style.Margin] }),
   },
 });
